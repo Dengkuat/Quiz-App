@@ -8,7 +8,7 @@ export const questions = [
       'JSON Syntax Exchange',
       'Java Syntax XML',
     ],
-    correct: 0,
+    correct: 0,  
   },
   {
     id: 2,
