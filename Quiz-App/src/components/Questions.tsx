@@ -1,4 +1,12 @@
-export const questions = [
+interface questionInterface {
+  id: number;
+  question: string;
+  options: string[];
+  correct: number;
+}
+
+
+export const questions:questionInterface[] = [
   {
     id: 1,
     question: 'What does JSX stand for?',
