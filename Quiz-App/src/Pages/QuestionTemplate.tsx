@@ -32,6 +32,7 @@ export const QuestionTemplate = () => {
 
   const handleRightAnswerSum = (index:number) =>{
     setClick(true)
+    if (click) return 
     if(index === question.correct){
     setResult((prev) => prev+1)
     }
