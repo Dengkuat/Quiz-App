@@ -2,7 +2,7 @@ import { useState } from "react";
 import { questions } from "../components/Questions"
 import { useParams, useNavigate } from "react-router-dom"
 import { useResult } from "../Context/useContext";
-
+import { useTheme } from "../Context/ThemeContext";
 
 export const QuestionTemplate = () => {
   const [click, setClick] = useState<boolean>(false)
@@ -11,6 +11,7 @@ export const QuestionTemplate = () => {
   const question = questions[Number(id) - 1]
   const answers = question.options
   const {setResult} = useResult()
+  const {toggleTheme, darkMode} = useTheme()
 
   const handleNavigation = () => {
     setClick(false)
@@ -37,12 +38,17 @@ export const QuestionTemplate = () => {
     setResult((prev) => prev+1)
     }
   }
-console.log(answers)
 
   return (
-    <div>
+    <div className={
+      darkMode?
+      'bg-black text-white duration-500'
+      :
+      'text-black bg-white duration-500'
+    }>
       <div className="h-screen flex justify-evenly items-center flex-col">
 
+      <button onClick={toggleTheme}>Light/Dark</button>
         <div className="text-3xl font-bold">
           <h1>Question {id} out of 10</h1>
         </div>
@@ -60,7 +66,7 @@ console.log(answers)
             className={click ? index === question.correct ?
               "text-green-700"
               :
-              "text-red-700":"text-black"}
+              "text-red-700":""}
             >{index + 1}.  {solution}</p>
           ))}
         </div>

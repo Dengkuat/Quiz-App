@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { useResult } from "../Context/useContext";
+import { useTheme } from "../Context/ThemeContext";
 
 export default function Result() {
   const navigate = useNavigate()
+  const {toggleTheme, darkMode} = useTheme()
   const {result, setResult} = useResult();
 
   const handleNavigation = () => {
@@ -14,11 +16,15 @@ export default function Result() {
     navigate("/")
   }
   return (
-    <div className="h-screen flex justify-evenly items-center flex-col">
+    <div className={`h-screen flex justify-evenly items-center flex-col duration-500 ${
+      darkMode?'bg-black text-white':'text-black bg-white'
+    }`
+    }>
       
         {/* user stats  */}
 
         <div className="text-center space-y-7">
+        <button onClick={toggleTheme}>Light/Dark</button>
           <p className="text-3xl font-bold">Final Score</p>
           <p className="text-2xl">{result}/10</p>
           {result> 5 ? 

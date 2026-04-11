@@ -1,13 +1,21 @@
 import { useNavigate} from "react-router-dom"
+import { useTheme } from "../Context/ThemeContext";
 
 export default function UserInstruction() {
   const navigate = useNavigate();
+  const {toggleTheme, darkMode} = useTheme()
 
   const handleNavigation = () => {
     navigate("/QuestionTemplate/1")
   }
   return (
-    <div>
+    <div className={
+      darkMode?
+      'bg-black text-white duration-500'
+      :
+      'text-black bg-white duration-500'
+    }>
+      <button onClick={toggleTheme}>Light/Dark</button>
     <div className="h-screen flex justify-center items-center">
       <div className="border py-30 px-20 rounded-2xl shadow-2xl space-y-10">
         <div className="space-y-4">
